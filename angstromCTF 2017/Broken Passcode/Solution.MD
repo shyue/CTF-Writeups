@@ -40,7 +40,7 @@ Voila! It looks like (since an int is 4 bytes) that it is stored in little-endia
 
 We can write a program to brute-force the solution, and with the addition of the hint, the runtime is fairly feasible. My program can be found [here.](files/sha1digest.java)
 
-My program took a long time to run, but I'm pretty sure that's because RandomAccessFile is super slow. A competitor pm'd me his solution that used Python, and he said that it only took around 30 seconds to run. Oops.. guess I'll use Python next time.
+My program took a long time to run, but I'm pretty sure that's because RandomAccessFile is super slow. A competitor pm'd me his solution that used Python, and he said that it only took around 30 seconds to run. Oops.. guess I'll use Python next time. (Edit: I redid it with Python, and it took just under 2 minutes instead of ~20 minutes with [this](files/solve.py) program)
 
 Once you run the program, it spits out the int: 8195472. So the flag is **actf{8195472}**
 
