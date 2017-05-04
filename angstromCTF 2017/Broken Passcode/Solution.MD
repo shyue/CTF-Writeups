@@ -31,6 +31,11 @@ But if you unzip it and you look at the file in notepad, 9999999 is nowhere in s
 ![alt tag](files/4.jpg "notepad")
 ![alt tag](files/5.jpg "hxd")
 
+The reason for this is because AndroidManifest XML files are kind of unique - they are something called binary compressed XML files. This is why I was afraid to decompile the file instead of just unzipping it, because I'm pretty sure decompiling it could mess up the binary/compressed part and make the sha-1 always incorrect. So how do we get around this and edit the binary XML?
+
+One person told me he used an Android tool called aapt to find out where the value is, but what I did was I realized that since the value was an Integer, it was probably being stored in the xml in some kind of hex form. 9999999 in decimal is 98967F in hex, so I figured to look for "7F" (I only looked for one byte of data becuase of endian-ness). 
+![alt tag](files/6.jpg "98967F")
+Voila! It looks like (since an int is 4 bytes) that it is stored in little-endian format from offsets 8108 to 810B. So if we just overwrite those bytes with the value of every 7 digit int as hex, then we should be able to recalculate the correct AndroidManifest.xml file.
 
 
 
