@@ -25,7 +25,7 @@ If you know about Android, you know that unless you repack/resign an Android app
 
 Cool! That means if we can guess/brute-force the 7 digits that should replace those 9s, we can recalculate the sha-1 and get the correct answer if it matches the sha-1 in the MANIFEST.MF file.
 
-To get to the AndroidManfiest.xml file in a couple ways, either through a decompiler or by changing the ending of the file to .zip and unzipping (fun fact, Android apps are really just zip files). However, decompiling might cause certain issues (that will be mentioned later), so I just chose to unzip it and open up the AndroidManifest.xml file.
+To get to the AndroidManfiest.xml file in a couple ways, you can either do it through a decompiler or by changing the ending of the file to .zip and unzipping (fun fact, Android apps are really just zip files). However, decompiling might cause certain issues (that will be mentioned later), so I just chose to unzip it and open up the AndroidManifest.xml file.
 
 But if you unzip it and you look at the file in notepad, 9999999 is nowhere in sight! The same happens if you look in a hex editor - it's not right after the com.example.guest1.passcode_actf.key string...
 ![alt tag](files/4.jpg "notepad")
@@ -38,6 +38,10 @@ One person told me he used an Android tool called aapt to find out where the val
 
 Voila! It looks like (since an int is 4 bytes) that it is stored in little-endian format from offsets 8108 to 810B. So if we just overwrite those bytes with the value of every 7 digit int as hex, then we should be able to recalculate the correct AndroidManifest.xml file.
 
+We can write a program to brute-force the solution, and with the addition of the hint, the runtime is fairly feasible. My program can be found [here.](files/sha1digest.java)
 
+My program took a long time to run, but I'm pretty sure that's because RandomAccessFile is super slow. A competitor pm'd me his solution that used Python, and he said that it only took around 30 seconds to run. Oops.. guess I'll use Python next time.
+
+Hope you enjoyed this problem/writeup!
 
 
