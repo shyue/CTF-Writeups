@@ -42,6 +42,8 @@ We can write a program to brute-force the solution, and with the addition of the
 
 My program took a long time to run, but I'm pretty sure that's because RandomAccessFile is super slow. A competitor pm'd me his solution that used Python, and he said that it only took around 30 seconds to run. Oops.. guess I'll use Python next time.
 
+Once you run the program, it spits out the int: 8195472. So the flag is **actf{8195472}**
+
 Hope you enjoyed this problem/writeup!
 
 
